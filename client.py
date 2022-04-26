@@ -1,9 +1,8 @@
 import os
 import time
+import json
 import pygame
 import requests
-from music.Believer import script as  BV
-from music.MindFreak import script as MF 
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # INITIALIZE MIXER AND SETTINGS VARIABLES
@@ -12,15 +11,17 @@ from music.MindFreak import script as MF
 pygame.mixer.init()
 URL = "http://192.168.1.31/exec"
 
-BV.URL = URL
-MF.URL = URL
-
 song_mappings = {
-    "Believer": BV,
-    "MindFreak": MF
+    "MindFreak": "music/MindFreak/"
 }
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # FUNCTIONS AND OTHER STUFF
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+def play_song(song_name):
+    try:
+        audio = pygame.mixer.load(song_mappings[song_name] + "music.mp3")
+        audio.play()
+    except Exception as e:
+        print(e)
