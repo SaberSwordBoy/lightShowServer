@@ -1,9 +1,9 @@
 import os
 import sys
 import time
-#import board
+import board
 import random
-#import neopixel
+import neopixel
 from flask import request, Flask
 from flask_restful import Api, Resource
 
@@ -12,7 +12,7 @@ from flask_restful import Api, Resource
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 LEDCOUNT = 300
-#pixels = neopixel.NeoPixel(board.D18,LEDCOUNT)
+pixels = neopixel.NeoPixel(board.D18,LEDCOUNT)
 app = Flask(__name__)
 api = Api(app)
 
@@ -52,10 +52,11 @@ class ExecFunc(Resource):
         func_name = request.form['func']
         try:
             mappings[func_name]()
-            return "Success! Function executing now. ✅"
-        except IndexError:
-            return "That function does not exists. ☠️"
+            return f"Success! Function '{func_name}' executed! ✅"
+        except KeyError:
+            return f"That function '{func_name}' does not exists. ☠️"
 
 api.add_resource(Index, "/")
+api.add_resource(ExecFunc, '/exec')
 if __name__ == "__main__":
     app.run("0.0.0.0", 80)
