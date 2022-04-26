@@ -20,21 +20,25 @@ api = Api(app)
 # COLORS AND VARIABLES
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-red   = (255,0,0)
-blue  = (0,0,255)
-green = (0,255,0)
+red     = (255,0,0)
+blue    = (0,0,255)
+green   = (0,255,0)
+yellow  = (255,255,0)
+magenta = (255,0,255)
+white   = (255,255,255)
+black   = (0,0,0)
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # FUNCTIONS AND LIGHT SEQUENCES
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-def allWhite(): pixels.fill((255,255,255))
-def allRed(): pixels.fill((255,0,0))
-def allBlue(): pixels.fill((0,0,255))
-def allGreen(): pixels.fill((0,255,0))
-def allOff(): pixels.fill((0,0,0))
-def allMagenta(): pixels.fill((255,0,255))
-def allYellow(): pixels.fill((255,255,0))
+def allWhite(): pixels.fill(white)
+def allRed(): pixels.fill(red)
+def allBlue(): pixels.fill(blue)
+def allGreen(): pixels.fill(green)
+def allOff(): pixels.fill(black)
+def allMagenta(): pixels.fill(magenta)
+def allYellow(): pixels.fill(yellow)
 
 def redGreenToCenter():
     start=0
@@ -56,7 +60,8 @@ def greenRedToCenter():
         pixels[loc] = red
         loc -= 1
         
-mappings = {
+# Map functions to names so we can call them using the API
+mappings = { 
     "allRed": allRed,
     "allWhite": allWhite,
     "allBlue": allBlue,
@@ -89,6 +94,10 @@ class ExecFunc(Resource):
             return f"Success! Function '{func_name}' executed! ✅"
         except KeyError:
             return f"That function '{func_name}' does not exists. ☠️", 500
+
+# =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# SET RESOURCES AND RUN RUN APP
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 api.add_resource(Index, "/")
 api.add_resource(ExecFunc, '/exec')
