@@ -17,6 +17,14 @@ app = Flask(__name__)
 api = Api(app)
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# COLORS AND VARIABLES
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+red   = (255,0,0)
+blue  = (0,0,255)
+green = (0,255,0)
+
+# =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # FUNCTIONS AND LIGHT SEQUENCES
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -25,14 +33,40 @@ def allRed(): pixels.fill((255,0,0))
 def allBlue(): pixels.fill((0,0,255))
 def allGreen(): pixels.fill((0,255,0))
 def allOff(): pixels.fill((0,0,0))
+def allMagenta(): pixels.fill((255,0,255))
+def allYellow(): pixels.fill((255,255,0))
 
+def redGreenToCenter():
+    start=0
+    end=LEDCOUNT
+    middle=LEDCOUNT//2
+    loc=end-1
+    for i in range(start,middle):
+        pixels[i] = red
+        pixels[loc] = green
+        loc -= 1
+        
+def greenRedToCenter():
+    start=0
+    end=LEDCOUNT
+    middle=LEDCOUNT//2
+    loc=end-1
+    for i in range(start,middle):
+        pixels[i] = green
+        pixels[loc] = red
+        loc -= 1
+        
 mappings = {
     "allRed": allRed,
     "allWhite": allWhite,
     "allBlue": allBlue,
     "allGreen": allGreen,
     "allOff": allOff,
-    "allBlack": allOff
+    "allBlack": allOff,
+    "allYellow": allYellow,
+    "allMagenta": allMagenta,
+    "redGreenToCenter": redGreenToCenter,
+    "greenRedToCenter": greenRedToCenter,
 }
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -54,7 +88,7 @@ class ExecFunc(Resource):
             mappings[func_name]()
             return f"Success! Function '{func_name}' executed! ✅"
         except KeyError:
-            return f"That function '{func_name}' does not exists. ☠️"
+            return f"That function '{func_name}' does not exists. ☠️", 500
 
 api.add_resource(Index, "/")
 api.add_resource(ExecFunc, '/exec')
