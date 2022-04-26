@@ -24,9 +24,3 @@ song_mappings = {
 # FUNCTIONS AND OTHER STUFF
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-def play_song(song_name):
-    try:
-        song_mappings[song_name].start()
-        return "Started!"
-    except KeyError:
-        return "That song doesn't exist!"
