@@ -21,7 +21,7 @@ song_mappings = {
 
 def play_song(song_name):
     try:
-        audio = pygame.mixer.load(song_mappings[song_name] + "music.mp3")
+        audio = pygame.mixer.Sound(song_mappings[song_name] + "music.mp3")
         audio.play()
     except Exception as e:
         print(e)
