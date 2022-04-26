@@ -25,3 +25,5 @@ def play_song(song_name):
         audio.play()
     except Exception as e:
         print(e)
+        
+play_song("MindFreak")
