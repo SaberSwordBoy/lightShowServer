@@ -12,7 +12,8 @@ pygame.mixer.init()
 URL = "http://192.168.1.31/exec"
 
 song_mappings = {
-    "MindFreak": "music/MindFreak/"
+    "MindFreak": "music/MindFreak/",
+    "Believer": "music/Believer/"
 }
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -20,14 +21,21 @@ song_mappings = {
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 def play_song(song_name):
-    try:
-<<<<<<< HEAD
-        audio = pygame.mixer.Sound(song_mappings[song_name] + "song.ogg")
-=======
-        audio = pygame.mixer.Sound(song_mappings[song_name] + "song.ogg")
->>>>>>> efd3fe53bc3b1740e31fc240d0f987b9b2a1e4c2
-        audio.play()
-    except Exception as e:
-        print(e)
-        
-play_song("MindFreak")
+    mappings = json.load(open(song_mappings[song_name] + "mappings.json"))["mapping"]
+    audio = pygame.mixer.Sound(song_mappings[song_name] + "song.ogg")
+    start_time = time.time()
+    audio.play()
+    for i in range(1,210*60):
+        try:
+            current_time = round(time.time() - start_time, 2)
+            func = mappings.get(str(round(current_time, 1)))
+            print(i, current_time, round(current_time, 1), func)
+            if func:
+                requests.post(URL, data={"func": func})
+            time.sleep(0.1)
+        except KeyboardInterrupt:
+            requests.post(URL, data={"func": "allOff"})
+            return
+    print(round(time.time() - start_time, 2))
+
+play_song("Believer")

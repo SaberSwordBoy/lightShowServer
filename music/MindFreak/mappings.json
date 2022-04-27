@@ -1,5 +1,20 @@
  {
      "mapping": {
-         "0.00": "allWhite"
+         "0.0": "greenRedToCenter",
+         "5.0": "redGreenToCenter",
+         "12.9": "allGreen", 
+
+         "13.8": "allBlue",
+         "14.6": "allRed",
+         "15.4": "allGreen",
+         "16.2": "allBlue",
+         "17.0": "allRed",
+         "17.8": "allBlue",
+         "18.6": "allRed",
+         "19.2": "allGreen",
+         "19.4": "allBlue",
+
+         "20.0": "greenRedToCenter",
+         "50.0": "allRed"
      }
  }
