@@ -13,6 +13,7 @@ from flask_restful import Api, Resource
 
 LEDCOUNT = 300
 pixels = neopixel.NeoPixel(board.D18,LEDCOUNT)
+pixels_array = [0]*LEDCOUNT
 app = Flask(__name__)
 api = Api(app)
 
@@ -79,6 +80,9 @@ def magentaBlueToCenter():
         pixels[i] = magenta
         pixels[loc] = blue
         loc -= 1
+
+def test():
+    pixels[::2] = red
         
 # Map functions to names so we can call them using the API
 mappings = { 
