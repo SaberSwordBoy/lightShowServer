@@ -3,6 +3,7 @@ import time
 import json
 import pygame
 import requests
+import threading
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # INITIALIZE MIXER AND SETTINGS VARIABLES
@@ -25,5 +26,4 @@ def play_song(song_name):
         audio.play()
     except Exception as e:
         print(e)
-        
 play_song("MindFreak")
