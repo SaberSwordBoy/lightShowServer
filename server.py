@@ -97,7 +97,8 @@ mappings = {
     "redGreenToCenter": redGreenToCenter,
     "greenRedToCenter": greenRedToCenter,
     "magentaBlueToCenter": magentaBlueToCenter,
-    "blueMagentaToCenter": blueMagentaToCenter
+    "blueMagentaToCenter": blueMagentaToCenter,
+    "test": test,
     
 }
 
