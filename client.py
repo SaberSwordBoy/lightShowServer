@@ -42,8 +42,8 @@ def play_song(song_name):
             print(current_time, pygame.mixer.music.get_pos(), func)
             
             if func:
-                requests.post(URL, data={"func": func})
-                print(func)
+                req = requests.post(URL, data={"func": func})
+                print(req.json(), req.status_code)
                 
         except KeyboardInterrupt:
             requests.post(URL, data={"func": "allOff"})

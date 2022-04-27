@@ -59,6 +59,26 @@ def greenRedToCenter():
         pixels[i] = green
         pixels[loc] = red
         loc -= 1
+
+def blueMagentaToCenter():
+    start = 0
+    end = LEDCOUNT
+    middle = LEDCOUNT//2
+    loc = end-1
+    for i in range(start, middle):
+        pixels[i] = blue
+        pixels[loc] = magenta
+        loc -= 1
+
+def magentaBlueToCenter():
+    start = 0
+    end = LEDCOUNT
+    middle = LEDCOUNT//2
+    loc = end-1
+    for i in range(start, middle):
+        pixels[i] = magenta
+        pixels[loc] = blue
+        loc -= 1
         
 # Map functions to names so we can call them using the API
 mappings = { 
@@ -72,6 +92,9 @@ mappings = {
     "allMagenta": allMagenta,
     "redGreenToCenter": redGreenToCenter,
     "greenRedToCenter": greenRedToCenter,
+    "magentaBlueToCenter": magentaBlueToCenter,
+    "blueMagentaToCenter": blueMagentaToCenter
+    
 }
 
 # =-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
