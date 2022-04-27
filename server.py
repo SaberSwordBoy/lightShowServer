@@ -82,7 +82,8 @@ def magentaBlueToCenter():
         loc -= 1
 
 def test():
-    pixels[::2] = red
+    for i in range(0, LEDCOUNT, 2):
+        pixels[i] = magenta
         
 # Map functions to names so we can call them using the API
 mappings = { 
